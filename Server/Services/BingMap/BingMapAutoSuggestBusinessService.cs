@@ -9,11 +9,13 @@ namespace Server.Services.BingMap
     {
         private readonly HttpClient _httpClient;
         private readonly BingMapAuth _bingMapAuth;
+        
         public BingMapAutoSuggestService(HttpClient httpClient, BingMapAuth bingMapAuth)
         {
             _bingMapAuth = bingMapAuth;
             _httpClient = httpClient;
         }
+        
         public async Task<List<BingMapAutoSuggestValue>> GetValuesAsync(IBingMapAutoSuggestRequest request)
         {
             request.key = _bingMapAuth.Key;

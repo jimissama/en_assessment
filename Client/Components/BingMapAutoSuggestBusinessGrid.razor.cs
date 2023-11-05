@@ -1,5 +1,6 @@
 using BlazorBootstrap;
 using EN.Client.Models;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
 
 namespace EN.Client.Components;
@@ -18,6 +19,7 @@ public partial class BingMapAutoSuggestBusinessGrid
     {
         return await Task.FromResult(request.ApplyTo(_bingMapAutoSuggestValues));
     }
+    
     private async Task SearchToBingMapAutoSuggest()
     {
         if (string.IsNullOrEmpty(_query))
@@ -51,6 +53,14 @@ public partial class BingMapAutoSuggestBusinessGrid
         _query = string.Empty;
         _bingMapAutoSuggestValues = new List<BingMapAutoSuggestValue>();
         _bingMapAutoSuggestGrid.ResetPageNumber();
+    }
+
+    private async Task KeyPress(KeyboardEventArgs e)
+    {
+        if (e.Code == "Enter" || e.Code == "NumpadEnter")
+        {
+            await SearchToBingMapAutoSuggest();
+        }
     }
 
     protected override void OnInitialized()

@@ -1,0 +1,16 @@
+@page "/customerview"
+@using EN.Client.Components
+@using EN.Shared
+@using BlazorBootstrap
+@inject HttpClient Http
+
+<PageTitle>Customers View</PageTitle>
+
+<h1>Customers View</h1>
+<br>
+<Toasts class="p-3" Messages="messages" Placement="ToastsPlacement.TopRight" />
+
+<CustomerGrid OnCustomerDelete="OnDelete" OnCustomerCreate="OnCreate" OnCustomerEdit="OnEdit" />
+
+
+

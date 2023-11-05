@@ -1,0 +1,50 @@
+@using EN.Client.Models
+@inject IJSRuntime JS
+@inject IBingMapAutoSuggestService BingMapAutoSuggestService
+
+<h1>@_status</h1>
+<br>
+<br>
+    <div class="input-group mb-3 " >
+        <input class="form-control" @bind-value="_query"/>
+        <button type="button" @onclick="ClearQuery" class="btn bg-transparent" style="margin-left: -40px; z-index: 100;">
+            <i class="bi bi-backspace"></i>
+        </button>
+        <Button Color="ButtonColor.Primary" @onclick="SearchToBingMapAutoSuggest">Search</Button>
+    </div>
+
+<Grid TItem="BusinessAddress" @ref="_businessGrid"
+Class="table table-hover table-bordered table-striped"
+      DataProvider="BingMapBusinessDataProvider"
+      AllowFiltering="false"
+      AllowPaging="true"
+      AllowSorting="false"
+      PageSize="5"
+      Responsive="true"
+      ItemsPerPageText="5"
+      PageSizeSelectorItems="@(new int[] { 5, 10, 15 })"
+      PaginationItemsTextFormat="">
+
+    <GridColumn TItem="BusinessAddress" HeaderText="Country Region" PropertyName="CountryRegion" FilterTextboxWidth="80">
+        @context.CountryRegion
+    </GridColumn>
+    <GridColumn TItem="BusinessAddress" HeaderText="Locality" PropertyName="Locality" FilterTextboxWidth="100">
+        @context.Locality
+    </GridColumn>
+    <GridColumn TItem="BusinessAddress" HeaderText="Admin District" PropertyName="AdminDistrict" FilterTextboxWidth="50">
+        @context.AdminDistrict
+    </GridColumn>
+    <GridColumn TItem="BusinessAddress" HeaderText="Country Region Iso2" PropertyName="CountryRegionIso2" FilterTextboxWidth="120">
+        @context.CountryRegionIso2
+    </GridColumn>
+    <GridColumn TItem="BusinessAddress" HeaderText="Postal Code" PropertyName="PostalCode" FilterTextboxWidth="50">
+        @context.PostalCode
+    </GridColumn>
+    <GridColumn TItem="BusinessAddress" HeaderText="Address Line" PropertyName="AddressLine" FilterTextboxWidth="80">
+        @context.AddressLine
+    </GridColumn>
+    <GridColumn TItem="BusinessAddress" HeaderText="Formatted Address" PropertyName="FormattedAddress" FilterTextboxWidth="80">
+        @context.FormattedAddress
+    </GridColumn>    
+</Grid>
+

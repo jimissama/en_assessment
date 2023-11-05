@@ -1,0 +1,51 @@
+@using EN.Shared
+@inject ICustomerService CustomerService
+
+<Button Type="ButtonType.Button" Color="ButtonColor.Primary" @onclick="OnGridCustomerCreate"> New Customer </Button>
+<Grid TItem="Customer" @ref="_customerGrid"
+Class="table table-hover table-bordered table-striped"
+      DataProvider="CustomersDataProvider"
+      AllowFiltering="false"
+      AllowPaging="true"
+      AllowSorting="false"
+      PageSize="5"
+      Responsive="true"
+      ItemsPerPageText="5"
+      PageSizeSelectorItems="@(new int[] { 5, 10, 15 })"
+      PaginationItemsTextFormat="">
+
+    <GridColumn TItem="Customer" HeaderText="Company Name" PropertyName="CustomerName" FilterTextboxWidth="80">
+        @context.CompanyName
+    </GridColumn>
+    <GridColumn TItem="Customer" HeaderText="ContactName" PropertyName="Contact Name" FilterTextboxWidth="100">
+        @context.ContactName
+    </GridColumn>
+    <GridColumn TItem="Customer" HeaderText="Address" PropertyName="Address" FilterTextboxWidth="150">
+        @context.Address
+    </GridColumn>
+    <GridColumn TItem="Customer" HeaderText="City" PropertyName="City" FilterTextboxWidth="120">
+        @context.City
+    </GridColumn>
+    <GridColumn TItem="Customer" HeaderText="Region" PropertyName="Region" FilterTextboxWidth="50">
+        @context.City
+    </GridColumn>
+    <GridColumn TItem="Customer" HeaderText="Postal Code" PropertyName="PostalCode" FilterTextboxWidth="80">
+        @context.PostalCode
+    </GridColumn>
+    <GridColumn TItem="Customer" HeaderText="Country" PropertyName="Country" FilterTextboxWidth="80">
+        @context.Country
+    </GridColumn>
+    <GridColumn TItem="Customer" HeaderText="Phone" PropertyName="Phone" FilterTextboxWidth="80">
+        @context.Phone
+    </GridColumn>
+    <GridColumn TItem="Customer" HeaderText="" PropertyName="Edit" FilterTextboxWidth="80">
+        <Button Type="ButtonType.Button" Color="ButtonColor.Primary" @onclick="(() => OnGridCustomerEdit(context))"> Edit </Button>
+    </GridColumn>
+    <GridColumn TItem="Customer" HeaderText="" PropertyName="Edit" FilterTextboxWidth="80">
+        <Button Type="ButtonType.Button" Color="ButtonColor.Danger" @onclick="(() => OnGridCustomerDelete(context.Id))"> Delete </Button>
+    </GridColumn>
+</Grid>
+
+
+<Modal @ref="_modal" UseStaticBackdrop="true"/>
+

@@ -33,18 +33,5 @@ namespace Server.Services.BingMap
 
             return bingMapBusinessResponse.resourceSets[0].resources[0].value.Select(v=>v.address).ToList();
         }
-
-        public string Get(string query, string latitude, string longitude)
-        {
-            var baseUrl = "http://dev.virtualearth.net/REST/v1/Autosuggest";
-            NameValueCollection queryString = new NameValueCollection();
-            queryString.Add("query", query);
-            queryString.Add("userLocation", $"{latitude},{longitude}");
-            queryString.Add("includeEntityTypes", "Business");
-            queryString.Add("key", _bingMapAuth.Key);
-            var parameterString = UriQueryHelper.ToQueryString(queryString);
-            return $"{baseUrl}{parameterString}";
-
-        }
     }
 }

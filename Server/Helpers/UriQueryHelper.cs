@@ -6,6 +6,11 @@ namespace Server.Helpers
     public static class UriQueryHelper
     {
 
+        /// <summary>
+        /// Creates uri query string
+        /// </summary>
+        /// <param name="valueCollection">query parametes' collection</param>
+        /// <returns>parameters' query string</returns>
         public static string ToQueryString(NameValueCollection valueCollection)
         {
             var array = (

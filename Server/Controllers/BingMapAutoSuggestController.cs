@@ -1,8 +1,10 @@
+using EN.Shared;
 using Microsoft.AspNetCore.Mvc;
 using Server.Services.BingMap;
 
 namespace Server.Controllers
 {
+    [ApiController]
     [Route("[controller]")]
     public class BingMapAutoSuggestController : ControllerBase
     {
@@ -13,10 +15,11 @@ namespace Server.Controllers
             _bingMapAutoSuggestService = bingMapAutoSuggestService;
         }
 
-        [HttpGet("{query}/{latitude}/{longitude}")]
-        public async Task<IActionResult> GetBingMapBusinessData(string query, string latitude, string longitude)
+        [HttpPost]
+        public async Task<IActionResult> BingMapBusinessData(BingMapAutoSuggestRequest request)
         {
-            return Ok(await _bingMapAutoSuggestService.GetBusinessAddressDataAsync(query, latitude, longitude));
+
+            return Ok(await _bingMapAutoSuggestService.GetValuesAsync(request));
         }
     }
 }

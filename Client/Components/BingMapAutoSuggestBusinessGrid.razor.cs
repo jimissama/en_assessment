@@ -11,12 +11,12 @@ public partial class BingMapAutoSuggestBusinessGrid
     private string _latitude = default!;
     private string _longitude = default!;
 
-    private Grid<BusinessAddress> _businessGrid = default!;
-    private List<BusinessAddress> _businessAddresses = new List<BusinessAddress>();
+    private Grid<BingMapAutoSuggestValue> _bingMapAutoSuggestGrid = default!;
+    private List<BingMapAutoSuggestValue> _bingMapAutoSuggestValues = new List<BingMapAutoSuggestValue>();
 
-    private async Task<GridDataProviderResult<BusinessAddress>> BingMapBusinessDataProvider(GridDataProviderRequest<BusinessAddress> request)
+    private async Task<GridDataProviderResult<BingMapAutoSuggestValue>> BingMapBusinessDataProvider(GridDataProviderRequest<BingMapAutoSuggestValue> request)
     {
-        return await Task.FromResult(request.ApplyTo(_businessAddresses));
+        return await Task.FromResult(request.ApplyTo(_bingMapAutoSuggestValues));
     }
     private async Task SearchToBingMapAutoSuggest()
     {
@@ -41,16 +41,16 @@ public partial class BingMapAutoSuggestBusinessGrid
             return;
         }
 
-        _businessAddresses = await BingMapAutoSuggestService.GetBusinessAddressesAsync(_query, _latitude, _longitude);
-        await _businessGrid.RefreshDataAsync();
+        _bingMapAutoSuggestValues = await BingMapAutoSuggestService.GetBusinessAddressesAsync(_query, _latitude, _longitude);
+        await _bingMapAutoSuggestGrid.RefreshDataAsync();
 
     }
 
     private void ClearQuery()
     {
         _query = string.Empty;
-        _businessAddresses = new List<BusinessAddress>();
-        _businessGrid.ResetPageNumber();
+        _bingMapAutoSuggestValues = new List<BingMapAutoSuggestValue>();
+        _bingMapAutoSuggestGrid.ResetPageNumber();
     }
 
     protected override void OnInitialized()

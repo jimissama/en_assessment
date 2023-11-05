@@ -17,7 +17,7 @@ namespace Server.Repositories
             var customer = await _context.Customers.FindAsync(id);
 
             if(customer is null)
-                throw new BadHttpRequestException("Customer Not Found");
+                throw new HttpRequestException("Customer Not Found", null, System.Net.HttpStatusCode.NotFound);
 
             _context.Customers.Remove(customer);
             await _context.SaveChangesAsync();
@@ -52,7 +52,7 @@ namespace Server.Repositories
             var customerToSave = await _context.Customers.FindAsync(customer.Id);
             
             if (customerToSave is null)
-                throw new BadHttpRequestException("Customer Not Found");
+                throw new HttpRequestException("Customer Not Found", null, System.Net.HttpStatusCode.NotFound);
 
             _context.Entry(customerToSave).CurrentValues.SetValues(customer);
             _context.Entry(customerToSave).State = EntityState.Modified;

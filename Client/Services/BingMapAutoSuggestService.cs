@@ -1,5 +1,6 @@
 using System.Net.Http.Json;
 using EN.Client.Models;
+using EN.Shared;
 
 namespace EN.Client.Services
 {
@@ -11,9 +12,16 @@ namespace EN.Client.Services
             _http = http;
         }
 
-        public async Task<List<BusinessAddress>> GetBusinessAddressesAsync(string query, string latitude, string longitude)
+        public async Task<List<BingMapAutoSuggestValue>> GetBusinessAddressesAsync(string query, string latitude, string longitude)
         {
-            return await _http.GetFromJsonAsync<List<BusinessAddress>>($"BingMapAutoSuggest/{query}/{latitude}/{longitude}");
+            var requestBody = new BingMapAutoSuggestRequest{
+                query = query, 
+                userLocation = $"{latitude},{longitude}", 
+                includeEntityTypes= "Business,Place,Address"};
+
+                var response = await _http.PostAsJsonAsync<BingMapAutoSuggestRequest>($"BingMapAutoSuggest", requestBody);
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadFromJsonAsync<List<BingMapAutoSuggestValue>>();
         }
     }
 }

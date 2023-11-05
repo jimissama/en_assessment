@@ -11,6 +11,6 @@ namespace EN.Client.Services
         /// <param name="latitude">user's location's latitude</param>
         /// <param name="longitude">user's location's longitude</param>
         /// <returns>List of business addresses</returns>
-        Task<List<BusinessAddress>> GetBusinessAddressesAsync(string query, string latitude, string longitude);
+        Task<List<BingMapAutoSuggestValue>> GetBusinessAddressesAsync(string query, string latitude, string longitude);
     }
 }

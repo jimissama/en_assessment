@@ -13,7 +13,7 @@
         <Button Color="ButtonColor.Primary" @onclick="SearchToBingMapAutoSuggest">Search</Button>
     </div>
 
-<Grid TItem="BusinessAddress" @ref="_businessGrid"
+<Grid TItem="BingMapAutoSuggestValue" @ref="_bingMapAutoSuggestGrid"
 Class="table table-hover table-bordered table-striped"
       DataProvider="BingMapBusinessDataProvider"
       AllowFiltering="false"
@@ -25,26 +25,44 @@ Class="table table-hover table-bordered table-striped"
       PageSizeSelectorItems="@(new int[] { 5, 10, 15 })"
       PaginationItemsTextFormat="">
 
-    <GridColumn TItem="BusinessAddress" HeaderText="Country Region" PropertyName="CountryRegion" FilterTextboxWidth="80">
-        @context.CountryRegion
+    <GridColumn TItem="BingMapAutoSuggestValue" HeaderText="Type" PropertyName="Type" FilterTextboxWidth="80">
+        @context.__type
     </GridColumn>
-    <GridColumn TItem="BusinessAddress" HeaderText="Locality" PropertyName="Locality" FilterTextboxWidth="100">
-        @context.Locality
+    <GridColumn TItem="BingMapAutoSuggestValue" HeaderText="Name" PropertyName="Name" FilterTextboxWidth="80">
+        @context.Name
     </GridColumn>
-    <GridColumn TItem="BusinessAddress" HeaderText="Admin District" PropertyName="AdminDistrict" FilterTextboxWidth="50">
-        @context.AdminDistrict
+    <GridColumn TItem="BingMapAutoSuggestValue" HeaderText="Country Region" PropertyName="CountryRegion" FilterTextboxWidth="80">
+        @context.Address.CountryRegion
     </GridColumn>
-    <GridColumn TItem="BusinessAddress" HeaderText="Country Region Iso2" PropertyName="CountryRegionIso2" FilterTextboxWidth="120">
-        @context.CountryRegionIso2
+    <GridColumn TItem="BingMapAutoSuggestValue" HeaderText="Locality" PropertyName="Locality" FilterTextboxWidth="100">
+        @context.Address.Locality
     </GridColumn>
-    <GridColumn TItem="BusinessAddress" HeaderText="Postal Code" PropertyName="PostalCode" FilterTextboxWidth="50">
-        @context.PostalCode
+    <GridColumn TItem="BingMapAutoSuggestValue" HeaderText="Admin District" PropertyName="AdminDistrict" FilterTextboxWidth="50">
+        @context.Address.AdminDistrict
     </GridColumn>
-    <GridColumn TItem="BusinessAddress" HeaderText="Address Line" PropertyName="AddressLine" FilterTextboxWidth="80">
-        @context.AddressLine
+    <GridColumn TItem="BingMapAutoSuggestValue" HeaderText="Admin District 2" PropertyName="AdminDistrict2" FilterTextboxWidth="50">
+        @context.Address.AdminDistrict2
     </GridColumn>
-    <GridColumn TItem="BusinessAddress" HeaderText="Formatted Address" PropertyName="FormattedAddress" FilterTextboxWidth="80">
-        @context.FormattedAddress
+    <GridColumn TItem="BingMapAutoSuggestValue" HeaderText="Country Region Iso2" PropertyName="CountryRegionIso2" FilterTextboxWidth="120">
+        @context.Address.CountryRegionIso2
+    </GridColumn>
+    <GridColumn TItem="BingMapAutoSuggestValue" HeaderText="Postal Code" PropertyName="PostalCode" FilterTextboxWidth="50">
+        @context.Address.PostalCode
+    </GridColumn>
+    <GridColumn TItem="BingMapAutoSuggestValue" HeaderText="Street Name" PropertyName="Street Name" FilterTextboxWidth="80">
+        @context.Address.StreetName
+    </GridColumn>
+    <GridColumn TItem="BingMapAutoSuggestValue" HeaderText="Neighborhood" PropertyName="Neighborhood" FilterTextboxWidth="80">
+        @context.Address.Neighborhood
+    </GridColumn>
+    <GridColumn TItem="BingMapAutoSuggestValue" HeaderText="Address Line" PropertyName="AddressLine" FilterTextboxWidth="80">
+        @context.Address.AddressLine
+    </GridColumn>
+    <GridColumn TItem="BingMapAutoSuggestValue" HeaderText="HouseNumber" PropertyName="HouseNumber" FilterTextboxWidth="80">
+        @context.Address.HouseNumber
+    </GridColumn>
+    <GridColumn TItem="BingMapAutoSuggestValue" HeaderText="Formatted Address" PropertyName="FormattedAddress" FilterTextboxWidth="80">
+        @context.Address.FormattedAddress
     </GridColumn>    
 </Grid>
 

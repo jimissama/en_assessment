@@ -9,7 +9,7 @@ Server/appsettings.Development.json
 Client/obj
 Client/bin
 
-UnitTest/obj
-UnitTest/bin
+UnitTests/obj
+UnitTests/bin
 
 

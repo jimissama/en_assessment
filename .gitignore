@@ -1,0 +1,12 @@
+Share/bin
+Share/obj
+
+Server/obj
+Server/bin
+Server/appsettings.json
+Server/appsettings.Development.json
+
+Client/obj
+Client/bin
+
+
